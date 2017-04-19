@@ -44,12 +44,16 @@ class TodosController < ApplicationController
   def create
     params.delete :action
     params.delete :controller
-    @todo = Todo.create! params
+    # @todo = Todo.create! params
+
+    @todo = Todo.new(params.require(:todo).permit(:title, :description))
 
     respond_to do |format|
       if @todo.save
+        format.html { redirect_to @todo, notice: 'TodoList was successfully updated.' }
         format.json { render :json => @todo, :status => :created, :location => @todo }
       else
+        format.html { redirect_to @todo, notice: @todo.errors }
         format.json  { render :json => @todo.errors, :status => :unprocessable_entity }
       end
     end

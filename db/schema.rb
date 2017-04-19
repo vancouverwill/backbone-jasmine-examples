@@ -8,18 +8,18 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110316074115) do
+ActiveRecord::Schema.define(version: 20110316074115) do
 
-  create_table "todos", :force => true do |t|
+  create_table "todos", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
     t.integer  "priority"
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "done",        :default => false
+    t.boolean  "done",        default: false
   end
 
 end
